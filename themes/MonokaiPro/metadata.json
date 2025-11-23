@@ -1,0 +1,12 @@
+{
+  "name": "MonokaiPro",
+  "description": "Monokai Pro theme with light/dark mode support. Auto-switches based on system preference.",
+  "author": "Marleybop",
+  "version": "2.0.0",
+  "tested_proxmox_versions": ["7.x", "8.x"],
+  "features": ["light-mode", "dark-mode", "auto-switch"],
+  "css_files": [
+    "css/monokai-pro.css"
+  ],
+  "inject_file": "snippet.html"
+}

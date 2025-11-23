@@ -1,0 +1,12 @@
+{
+  "name": "_BaseTemplate",
+  "description": "Comprehensive theme template with CSS variables for all UI elements. Includes light/dark mode scaffolding. Copy this folder and customize the variables.",
+  "author": "PVE Theme Manager",
+  "version": "2.0.0",
+  "tested_proxmox_versions": ["7.x", "8.x"],
+  "features": ["dark-mode", "light-mode-ready"],
+  "css_files": [
+    "css/base-template.css"
+  ],
+  "inject_file": "snippet.html"
+}

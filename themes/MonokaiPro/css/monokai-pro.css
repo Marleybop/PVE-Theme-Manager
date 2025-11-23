@@ -1,0 +1,1295 @@
+/*
+ * Monokai Pro Theme for Proxmox VE
+ * Bold contrast with magenta, green, and cyan accents.
+ * Supports both light and dark modes (auto-switches with system preference).
+ * Based on the classic Monokai color scheme.
+ * Author: Marleybop
+ */
+
+/* =============================================================================
+   CSS VARIABLES - Monokai Pro Color Palette (Dark Mode - Default)
+   ============================================================================= */
+
+:root {
+    /* -------------------------------------------------------------------------
+       PRIMARY COLORS - Monokai Dark Backgrounds
+       ------------------------------------------------------------------------- */
+    --theme-bg-darkest: #19191c;        /* Darkest background (viewport) */
+    --theme-bg-dark: #1b1b1f;           /* Dark background (windows, masks) */
+    --theme-bg-main: #242428;           /* Main panel background */
+    --theme-bg-light: #2b2b30;          /* Lighter elements (inputs, headers) */
+    --theme-bg-lighter: #333338;        /* Hover states, borders */
+    --theme-bg-lightest: #434349;       /* Highlights, strong borders */
+
+    /* -------------------------------------------------------------------------
+       TEXT COLORS
+       ------------------------------------------------------------------------- */
+    --theme-text-primary: #f2f2f2;      /* Main text */
+    --theme-text-secondary: #c6c6c9;    /* Secondary/muted text */
+    --theme-text-disabled: #727278;     /* Disabled text */
+    --theme-text-link: #78dce8;         /* Links (cyan) */
+    --theme-text-link-hover: #ff6188;   /* Link hover (magenta) */
+
+    /* -------------------------------------------------------------------------
+       ACCENT COLORS - Monokai Signature Colors
+       ------------------------------------------------------------------------- */
+    --theme-accent-primary: #ff6188;    /* Primary accent - Monokai Magenta */
+    --theme-accent-hover: #ff7a9a;      /* Hover state - lighter magenta */
+    --theme-accent-active: #d94f73;     /* Active/pressed - darker magenta */
+    --theme-accent-secondary: #a9dc76;  /* Secondary accent - Monokai Green */
+    --theme-accent-tertiary: #78dce8;   /* Tertiary accent - Monokai Cyan */
+
+    /* -------------------------------------------------------------------------
+       STATUS COLORS
+       ------------------------------------------------------------------------- */
+    --theme-success: #a9dc76;           /* Success/online/running (green) */
+    --theme-warning: #fc9867;           /* Warning states (orange) */
+    --theme-error: #ff6188;             /* Error/critical (magenta) */
+    --theme-info: #78dce8;              /* Info (cyan) */
+
+    /* -------------------------------------------------------------------------
+       BORDER COLORS
+       ------------------------------------------------------------------------- */
+    --theme-border-dark: #1b1b1f;       /* Dark borders */
+    --theme-border-main: #333338;       /* Main borders */
+    --theme-border-light: #434349;      /* Light borders, separators */
+
+    /* -------------------------------------------------------------------------
+       GAUGE/CHART COLORS (Proxmox widgets)
+       ------------------------------------------------------------------------- */
+    --pwt-panel-background: var(--theme-bg-main);
+    --pwt-text-color: var(--theme-text-primary);
+    --pwt-gauge-default: var(--theme-accent-primary);
+    --pwt-gauge-back: var(--theme-bg-light);
+    --pwt-gauge-warn: var(--theme-warning);
+    --pwt-gauge-crit: var(--theme-error);
+    --pwt-chart-primary: var(--theme-accent-tertiary);
+    --pwt-chart-grid-stroke: var(--theme-border-main);
+
+    /* -------------------------------------------------------------------------
+       SHADOWS & EFFECTS
+       ------------------------------------------------------------------------- */
+    --theme-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --theme-glow: 0 0 12px rgba(255, 97, 136, 0.2);
+
+    /* -------------------------------------------------------------------------
+       BUTTON TEXT (for gradient buttons)
+       ------------------------------------------------------------------------- */
+    --theme-btn-text: #1a1a1f;
+
+    /* -------------------------------------------------------------------------
+       ICON FILTERS (for SVG/icon adjustments)
+       ------------------------------------------------------------------------- */
+    --theme-icon-invert: invert(90%);
+    --theme-icon-brightness: brightness(175%);
+    --theme-icon-brightness-hover: brightness(200%);
+    --theme-checkbox-filter: invert(90%) hue-rotate(180deg) brightness(125%);
+
+    /* Enable dark color scheme */
+    color-scheme: dark;
+}
+
+/* =============================================================================
+   CSS VARIABLES - Monokai Pro Light Mode
+   ============================================================================= */
+
+@media (prefers-color-scheme: light) {
+    :root {
+        /* ---------------------------------------------------------------------
+           PRIMARY COLORS - Monokai Light Backgrounds
+           --------------------------------------------------------------------- */
+        --theme-bg-darkest: #d3cdcc;        /* Lightest background (viewport) - official Monokai Pro light */
+        --theme-bg-dark: #c9c3c2;           /* Slightly darker (windows, masks) */
+        --theme-bg-main: #e8e4e3;           /* Main panel background */
+        --theme-bg-light: #f5f2f1;          /* Lighter elements (inputs, headers) */
+        --theme-bg-lighter: #ebe7e6;        /* Hover states */
+        --theme-bg-lightest: #ffffff;       /* Highlights */
+
+        /* ---------------------------------------------------------------------
+           TEXT COLORS - Dark text for light backgrounds
+           --------------------------------------------------------------------- */
+        --theme-text-primary: #2c292d;      /* Main text - official Monokai Pro */
+        --theme-text-secondary: #555157;    /* Secondary/muted text */
+        --theme-text-disabled: #9a979b;     /* Disabled text */
+        --theme-text-link: #0069ab;         /* Links - darker cyan for contrast */
+        --theme-text-link-hover: #d9376e;   /* Link hover - darker magenta */
+
+        /* ---------------------------------------------------------------------
+           ACCENT COLORS - Adjusted for light backgrounds
+           --------------------------------------------------------------------- */
+        --theme-accent-primary: #f82a71;    /* Primary accent - deeper magenta for contrast */
+        --theme-accent-hover: #ff5a8e;      /* Hover state */
+        --theme-accent-active: #c91e5b;     /* Active/pressed */
+        --theme-accent-secondary: #7fb03e;  /* Secondary accent - deeper green */
+        --theme-accent-tertiary: #2aa1b3;   /* Tertiary accent - deeper cyan */
+
+        /* ---------------------------------------------------------------------
+           STATUS COLORS - Adjusted for light mode visibility
+           --------------------------------------------------------------------- */
+        --theme-success: #5a9e0f;           /* Success - darker green */
+        --theme-warning: #e87322;           /* Warning - darker orange */
+        --theme-error: #e02454;             /* Error - darker magenta */
+        --theme-info: #2aa1b3;              /* Info - darker cyan */
+
+        /* ---------------------------------------------------------------------
+           BORDER COLORS
+           --------------------------------------------------------------------- */
+        --theme-border-dark: #c9c3c2;       /* Dark borders */
+        --theme-border-main: #d5d1d0;       /* Main borders */
+        --theme-border-light: #e0dcdb;      /* Light borders, separators */
+
+        /* ---------------------------------------------------------------------
+           SHADOWS & EFFECTS - Lighter for light mode
+           --------------------------------------------------------------------- */
+        --theme-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        --theme-glow: 0 0 12px rgba(248, 42, 113, 0.15);
+
+        /* ---------------------------------------------------------------------
+           BUTTON TEXT (for gradient buttons)
+           --------------------------------------------------------------------- */
+        --theme-btn-text: #ffffff;
+
+        /* ---------------------------------------------------------------------
+           ICON FILTERS - Inverted for light mode
+           --------------------------------------------------------------------- */
+        --theme-icon-invert: invert(10%);
+        --theme-icon-brightness: brightness(50%);
+        --theme-icon-brightness-hover: brightness(30%);
+        --theme-checkbox-filter: none;
+
+        /* Enable light color scheme */
+        color-scheme: light;
+    }
+}
+
+/* =============================================================================
+   BODY & VIEWPORT
+   ============================================================================= */
+
+.x-body {
+    color: var(--theme-text-primary) !important;
+    background-color: var(--theme-bg-darkest) !important;
+}
+
+.x-viewport > .x-body,
+body.x-border-layout-ct,
+div.x-border-layout-ct {
+    background-color: var(--theme-bg-darkest) !important;
+}
+
+/* Subtle gradient background */
+body {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 97, 136, 0.08), transparent 35%),
+        radial-gradient(circle at 80% 10%, rgba(120, 220, 232, 0.08), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(169, 220, 118, 0.05), transparent 40%),
+        var(--theme-bg-darkest) !important;
+}
+
+/* =============================================================================
+   PANELS
+   ============================================================================= */
+
+.x-panel,
+.x-panel-body-default {
+    background-color: var(--theme-bg-main) !important;
+    border-color: var(--theme-border-main) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+.x-panel-header-default {
+    background: linear-gradient(90deg, #1f1f24, #18181d) !important;
+    border: none !important;
+    border-bottom: 1px solid var(--theme-accent-primary) !important;
+}
+
+.x-panel-header-title-default {
+    color: var(--theme-text-link) !important;
+}
+
+/* Resource tree panel */
+div[id^="pveResourceTree-"][id$="-body"] {
+    border-color: var(--theme-bg-main) !important;
+}
+
+/* =============================================================================
+   WINDOWS & MODALS
+   ============================================================================= */
+
+.x-window-default {
+    background-color: var(--theme-bg-dark) !important;
+    border-color: transparent !important;
+    box-shadow: var(--theme-shadow) !important;
+}
+
+.x-window-header-default {
+    background: linear-gradient(90deg, #1f1f24, #18181d) !important;
+    border-color: transparent !important;
+    border-bottom: 1px solid var(--theme-accent-primary) !important;
+}
+
+.x-window-header-title-default {
+    color: var(--theme-text-link) !important;
+}
+
+.x-window-body-default {
+    background-color: var(--theme-bg-main) !important;
+    border-color: var(--theme-border-main) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+.x-window-ghost {
+    background-color: var(--theme-bg-main) !important;
+}
+
+/* Message boxes */
+.x-message-box .x-window-body {
+    background-color: var(--theme-bg-light) !important;
+}
+
+/* =============================================================================
+   BUTTONS
+   ============================================================================= */
+
+/* Primary buttons */
+.x-btn-default-small {
+    background: linear-gradient(135deg, var(--theme-accent-primary), var(--theme-accent-secondary)) !important;
+    border: none !important;
+    color: var(--theme-btn-text) !important;
+    font-weight: 600 !important;
+}
+
+.x-btn-default-small .x-btn-inner-default-small {
+    color: var(--theme-btn-text) !important;
+}
+
+.x-btn-default-small.x-btn-over,
+.x-keyboard-mode .x-btn-default-small.x-btn-focus {
+    background: linear-gradient(135deg, var(--theme-accent-hover), #b8e485) !important;
+    box-shadow: var(--theme-glow) !important;
+}
+
+.x-btn-default-small.x-btn-pressed {
+    background: linear-gradient(135deg, var(--theme-accent-active), #8fc45e) !important;
+}
+
+.x-btn-default-small.x-btn-disabled {
+    background: var(--theme-bg-lighter) !important;
+    opacity: 0.6;
+}
+
+/* Toolbar buttons */
+.x-btn-default-toolbar-small {
+    background: linear-gradient(90deg, #31313a, #292932) !important;
+    border: 1px solid var(--theme-border-light) !important;
+}
+
+.x-btn-default-toolbar-small .x-btn-inner-default-toolbar-small,
+.x-btn-default-toolbar-small .x-btn-icon-el-default-toolbar-small {
+    color: var(--theme-text-primary) !important;
+}
+
+.x-btn-default-toolbar-small.x-btn-over,
+.x-keyboard-mode .x-btn-default-toolbar-small.x-btn-focus {
+    border-color: var(--theme-accent-tertiary) !important;
+    box-shadow: 0 0 10px rgba(120, 220, 232, 0.3) !important;
+}
+
+.x-btn-default-toolbar-small.x-btn-pressed,
+.x-btn-default-toolbar-small.x-btn-menu-active {
+    border-color: var(--theme-accent-primary) !important;
+    background: var(--theme-bg-lightest) !important;
+}
+
+/* Inline buttons */
+.proxmox-inline-button {
+    background-color: var(--theme-bg-lightest) !important;
+    border-color: var(--theme-border-light) !important;
+}
+
+.proxmox-inline-button .x-btn-inner,
+.proxmox-inline-button .x-btn-icon-el {
+    color: var(--theme-text-primary) !important;
+}
+
+/* =============================================================================
+   FORMS & INPUTS
+   ============================================================================= */
+
+.x-form-text-default,
+.x-form-field {
+    background-color: #1f1f25 !important;
+    color: var(--theme-text-primary) !important;
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-form-trigger-wrap-default {
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-form-trigger-wrap-default.x-form-trigger-wrap-focus {
+    border-color: var(--theme-accent-tertiary) !important;
+    box-shadow: 0 0 8px rgba(120, 220, 232, 0.3) !important;
+}
+
+.x-form-trigger-default {
+    background-color: var(--theme-bg-light) !important;
+}
+
+.x-form-display-field-default {
+    color: var(--theme-text-primary) !important;
+}
+
+.x-form-item-label-default {
+    color: var(--theme-text-primary) !important;
+}
+
+.x-form-cb-label-default {
+    color: var(--theme-text-secondary) !important;
+}
+
+/* Checkboxes and radios */
+.x-form-checkbox-default,
+.x-form-radio-default {
+    filter: var(--theme-checkbox-filter);
+}
+
+/* Spinner */
+.x-form-spinner-default {
+    background-color: var(--theme-bg-light) !important;
+}
+
+/* Fieldsets */
+.x-fieldset-default {
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-fieldset-header-default > .x-fieldset-header-text {
+    color: var(--theme-text-primary) !important;
+}
+
+/* Dropdown lists */
+.x-boundlist {
+    background-color: var(--theme-bg-light) !important;
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-boundlist-item {
+    background-color: var(--theme-bg-light) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+.x-boundlist-item-over {
+    background-color: rgba(120, 220, 232, 0.15) !important;
+}
+
+.x-boundlist-selected {
+    background-color: rgba(255, 97, 136, 0.2) !important;
+}
+
+/* Invalid fields */
+.x-form-invalid {
+    border-color: var(--theme-warning) !important;
+    background-color: rgba(252, 152, 103, 0.1) !important;
+}
+
+/* =============================================================================
+   GRIDS & TABLES
+   ============================================================================= */
+
+/* Grid header */
+.x-grid-header-ct {
+    background-color: #1f1f25 !important;
+    border: solid 1px var(--theme-border-main) !important;
+}
+
+.x-column-header,
+.x-column-header-default {
+    background-color: transparent !important;
+    border-color: var(--theme-border-main) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+.x-column-header-over,
+.x-column-header-open {
+    background-color: rgba(120, 220, 232, 0.12) !important;
+}
+
+.x-column-header-sort-ASC,
+.x-column-header-sort-DESC {
+    border-bottom: 2px solid var(--theme-accent-primary) !important;
+    color: var(--theme-accent-primary) !important;
+}
+
+.x-column-header-trigger {
+    border-color: var(--theme-border-light) !important;
+}
+
+/* Grid rows */
+.x-grid-item {
+    background-color: var(--theme-bg-main) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+.x-grid-item-alt {
+    background-color: var(--theme-bg-light) !important;
+}
+
+.x-grid-item-over {
+    background-color: rgba(120, 220, 232, 0.15) !important;
+}
+
+.x-grid-item-selected {
+    background-color: rgba(255, 97, 136, 0.18) !important;
+}
+
+.x-keyboard-mode .x-grid-item-focused {
+    background-color: rgba(120, 220, 232, 0.15) !important;
+}
+
+.x-keyboard-mode .x-grid-item-focused .x-grid-cell-inner::before {
+    border-color: var(--theme-accent-tertiary) !important;
+}
+
+/* Grid borders */
+.x-grid-with-row-lines .x-grid-item {
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-grid-with-col-lines .x-grid-cell {
+    border-color: var(--theme-border-main) !important;
+}
+
+/* Grid cell special */
+.x-grid-cell-special {
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-grid-cell-row-numberer {
+    color: var(--theme-text-primary) !important;
+    background-color: var(--theme-bg-main) !important;
+}
+
+/* Grid groups */
+.x-grid-group-hd {
+    background-color: var(--theme-bg-main) !important;
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-grid-group-title {
+    color: var(--theme-text-primary) !important;
+}
+
+/* Grid summary */
+.x-grid-row-summary .x-grid-cell {
+    background-color: var(--theme-bg-main) !important;
+    border-color: var(--theme-border-main) !important;
+}
+
+/* Empty grid */
+.x-grid-empty {
+    background-color: var(--theme-bg-main) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+/* Drag and drop */
+.x-dd-drag-proxy {
+    background-color: var(--theme-bg-dark) !important;
+    border-color: var(--theme-border-main) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+/* =============================================================================
+   TREE VIEW & NAVIGATION
+   ============================================================================= */
+
+.x-treelist-pve-nav {
+    background-color: var(--theme-bg-main) !important;
+    border-color: var(--theme-border-light) !important;
+}
+
+.x-treelist-item {
+    background-color: var(--theme-bg-main) !important;
+}
+
+.x-treelist-item-text,
+.x-treelist-item-icon {
+    color: var(--theme-text-primary) !important;
+}
+
+.x-treelist-row-over {
+    background-color: rgba(169, 220, 118, 0.12) !important;
+}
+
+.x-treelist-row-over .x-treelist-item-text,
+.x-treelist-row-over .x-treelist-item-icon {
+    color: var(--theme-accent-secondary) !important;
+}
+
+.x-treelist-item-selected > .x-treelist-row {
+    background-color: var(--theme-accent-primary) !important;
+}
+
+.x-treelist-item-selected .x-treelist-item-text,
+.x-treelist-item-selected .x-treelist-item-icon {
+    color: var(--theme-btn-text) !important;
+}
+
+/* Tree icons */
+.x-tree-icon-custom,
+.x-grid-icon-custom {
+    color: var(--theme-text-secondary) !important;
+}
+
+.x-tree-icon-custom.running,
+.x-grid-icon-custom.running {
+    color: var(--theme-text-primary) !important;
+}
+
+.x-tree-icon-custom.stopped,
+.x-tree-icon-custom.offline,
+.x-grid-icon-custom.stopped,
+.x-grid-icon-custom.offline {
+    color: var(--theme-text-disabled) !important;
+}
+
+.x-tree-icon-custom::after,
+.x-grid-icon-custom::after {
+    color: var(--theme-text-secondary) !important;
+    text-shadow: -1px 0 1px var(--theme-bg-main) !important;
+}
+
+/* Tree expander arrows */
+.x-tree-arrows .x-tree-expander {
+    filter: var(--theme-icon-brightness-hover);
+}
+
+/* Tree elbow connectors */
+.x-tree-elbow-img {
+    filter: var(--theme-icon-invert);
+}
+
+/* =============================================================================
+   TABS
+   ============================================================================= */
+
+.x-tab-bar-default {
+    background-color: var(--theme-bg-main) !important;
+}
+
+.x-tab-default,
+.x-tab-default-top {
+    background: linear-gradient(90deg, #32323b, #272731) !important;
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-tab-inner-default {
+    color: var(--theme-text-primary) !important;
+}
+
+.x-tab-default.x-tab-over {
+    background: linear-gradient(90deg, #3d3d47, #32323b) !important;
+    border-color: var(--theme-accent-tertiary) !important;
+}
+
+.x-tab-default.x-tab-active {
+    background: linear-gradient(90deg, var(--theme-accent-primary), var(--theme-accent-secondary)) !important;
+    border-color: transparent !important;
+}
+
+.x-tab-default.x-tab-active .x-tab-inner-default {
+    color: var(--theme-btn-text) !important;
+}
+
+.x-tab-default.x-tab-disabled {
+    background-color: var(--theme-bg-main) !important;
+    border-color: transparent !important;
+    opacity: 0.6;
+}
+
+.x-keyboard-mode .x-tab-default.x-tab-focus {
+    background: var(--theme-accent-primary) !important;
+    border-color: var(--theme-accent-primary) !important;
+}
+
+.x-tab-icon-el-default {
+    color: var(--theme-text-primary) !important;
+}
+
+/* =============================================================================
+   MENUS
+   ============================================================================= */
+
+.x-menu-default {
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-menu-body-default {
+    background-color: var(--theme-bg-light) !important;
+}
+
+.x-menu-header {
+    background-color: var(--theme-accent-primary) !important;
+    color: var(--theme-btn-text) !important;
+}
+
+.x-menu-item-text-default {
+    color: var(--theme-text-primary) !important;
+}
+
+.x-menu-item-icon-default {
+    color: var(--theme-text-secondary) !important;
+}
+
+.x-menu-item-default.x-menu-item-focus,
+.x-menu-item-default.x-menu-item-active {
+    background-color: rgba(120, 220, 232, 0.15) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+.x-menu-item-default.x-menu-item-separator {
+    background-color: var(--theme-bg-light) !important;
+    border-color: var(--theme-border-light) !important;
+}
+
+.x-menu-icon-separator-default {
+    background-color: var(--theme-bg-light) !important;
+    border-color: var(--theme-border-light) !important;
+}
+
+/* Menu checkboxes */
+.x-menu-item-checked .x-menu-item-icon-default.x-menu-item-checkbox,
+.x-menu-item-unchecked .x-menu-item-icon-default.x-menu-item-checkbox {
+    filter: var(--theme-checkbox-filter);
+}
+
+/* =============================================================================
+   TOOLBARS
+   ============================================================================= */
+
+.x-toolbar,
+.x-toolbar-default {
+    background: linear-gradient(90deg, #25252b, #1e1e23) !important;
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-toolbar-default.x-docked-top {
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-toolbar-default .x-toolbar-separator {
+    border-color: var(--theme-border-light) !important;
+}
+
+.x-toolbar-text-default {
+    color: var(--theme-text-primary) !important;
+}
+
+/* =============================================================================
+   PROGRESS BARS
+   ============================================================================= */
+
+.x-progress-default {
+    background-color: #1d1d23 !important;
+    border: 1px solid var(--theme-border-main) !important;
+}
+
+.x-progress-default .x-progress-bar-default {
+    background: linear-gradient(90deg, var(--theme-accent-primary), var(--theme-accent-secondary)) !important;
+}
+
+.x-progress-default .x-progress-text {
+    color: var(--theme-text-primary) !important;
+}
+
+.x-progress.warning .x-progress-bar {
+    background: var(--theme-warning) !important;
+}
+
+.x-progress.critical .x-progress-bar {
+    background: var(--theme-error) !important;
+}
+
+/* =============================================================================
+   TOOLTIPS
+   ============================================================================= */
+
+.x-tip-default {
+    background-color: var(--theme-bg-dark) !important;
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-tip-body-default {
+    color: var(--theme-text-primary) !important;
+}
+
+.x-tip-form-invalid {
+    background-color: var(--theme-bg-light) !important;
+    border-color: var(--theme-border-main) !important;
+}
+
+.x-tip-body-form-invalid {
+    color: var(--theme-text-primary) !important;
+}
+
+/* =============================================================================
+   SPLITTERS
+   ============================================================================= */
+
+.x-splitter {
+    background-color: var(--theme-bg-dark) !important;
+}
+
+.x-splitter-horizontal {
+    background-color: var(--theme-bg-darkest) !important;
+}
+
+.x-keyboard-mode .x-splitter-focus::after {
+    border-color: var(--theme-accent-tertiary) !important;
+}
+
+/* =============================================================================
+   SCROLLBARS - Monokai Gradient
+   ============================================================================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #15151a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--theme-accent-primary), var(--theme-accent-secondary));
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--theme-warning), var(--theme-accent-tertiary));
+}
+
+/* =============================================================================
+   MASKS & LOADING
+   ============================================================================= */
+
+.x-mask {
+    background-color: rgba(27, 27, 31, 0.6) !important;
+}
+
+.x-mask-msg {
+    background-color: var(--theme-bg-light) !important;
+    border: solid 1px var(--theme-border-main) !important;
+}
+
+.x-mask-msg-text {
+    color: var(--theme-text-primary) !important;
+}
+
+/* Loading spinners */
+.x-grid-row-loading,
+.x-treelist-item-loading .x-treelist-item-icon,
+.x-grid-tree-loading .x-tree-icon {
+    filter: var(--theme-icon-invert);
+}
+
+/* =============================================================================
+   SHADOWS
+   ============================================================================= */
+
+.x-css-shadow {
+    box-shadow: black 0 -1px 15px 5px !important;
+}
+
+/* =============================================================================
+   TOOL ICONS (panel tools)
+   ============================================================================= */
+
+.x-tool-img {
+    filter: var(--theme-icon-brightness);
+}
+
+.x-tool-over .x-tool-img {
+    filter: var(--theme-icon-brightness-hover);
+}
+
+.x-panel-header-default .x-tool-tool-el {
+    background-color: transparent !important;
+}
+
+/* =============================================================================
+   LEGENDS (charts)
+   ============================================================================= */
+
+.x-legend-container {
+    background-color: var(--theme-bg-light) !important;
+}
+
+.x-legend-horizontal .x-legend-item {
+    background-color: var(--theme-bg-light) !important;
+    color: var(--theme-text-primary) !important;
+    border-color: var(--theme-bg-dark) !important;
+}
+
+/* =============================================================================
+   DATE PICKER
+   ============================================================================= */
+
+.x-datepicker,
+.x-datepicker-column-header,
+.x-monthpicker {
+    background-color: var(--theme-bg-main) !important;
+    color: var(--theme-text-primary) !important;
+    border-color: transparent !important;
+}
+
+.x-datepicker-header {
+    background-color: var(--theme-bg-dark) !important;
+}
+
+.x-datepicker-date,
+.x-monthpicker-item-inner {
+    color: var(--theme-text-primary) !important;
+}
+
+.x-datepicker-prevday .x-datepicker-date,
+.x-datepicker-nextday .x-datepicker-date {
+    color: var(--theme-text-disabled) !important;
+}
+
+.x-datepicker-footer,
+.x-monthpicker-buttons {
+    background-color: var(--theme-bg-dark) !important;
+}
+
+.x-datepicker-selected div.x-datepicker-date,
+.x-monthpicker-item a.x-monthpicker-selected,
+a.x-monthpicker-item-inner:hover,
+div.x-datepicker-date:hover {
+    background-color: rgba(255, 97, 136, 0.2) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+.x-monthpicker-months {
+    border-color: var(--theme-border-main) !important;
+}
+
+/* =============================================================================
+   TAGS
+   ============================================================================= */
+
+.proxmox-tags-full .proxmox-tag-dark {
+    background: rgba(255, 97, 136, 0.2) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+.proxmox-tags-full .proxmox-tag-light {
+    background: rgba(120, 220, 232, 0.2) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+.proxmox-tags-full .proxmox-tag-light,
+.proxmox-tags-full .proxmox-tag-dark,
+.proxmox-tags-circle .proxmox-tag-light,
+.proxmox-tags-circle .proxmox-tag-dark {
+    outline: 1px solid rgba(51, 51, 56, 0.3) !important;
+}
+
+.pve-edit-tag.editable span {
+    background-color: var(--theme-bg-light) !important;
+    color: var(--theme-text-primary) !important;
+    border-color: var(--theme-border-light) !important;
+}
+
+/* =============================================================================
+   STATUS ROWS
+   ============================================================================= */
+
+.proxmox-invalid-row {
+    background-color: rgba(255, 97, 136, 0.2) !important;
+}
+
+.proxmox-warning-row {
+    background-color: rgba(252, 152, 103, 0.2) !important;
+}
+
+.proxmox-disabled-row,
+.proxmox-disabled-row td {
+    color: var(--theme-text-disabled) !important;
+}
+
+/* =============================================================================
+   STATUS COLORS
+   ============================================================================= */
+
+.good {
+    color: var(--theme-success) !important;
+}
+
+.warning {
+    color: var(--theme-warning) !important;
+}
+
+.critical {
+    color: var(--theme-error) !important;
+}
+
+.info-blue {
+    color: var(--theme-info) !important;
+}
+
+/* =============================================================================
+   HINTS & NOTICES
+   ============================================================================= */
+
+.pmx-hint {
+    background-color: rgba(252, 152, 103, 0.2) !important;
+}
+
+.pmx-hint a {
+    color: var(--theme-text-link) !important;
+}
+
+/* =============================================================================
+   USAGE BARS (small vertical bars)
+   ============================================================================= */
+
+.usage-wrapper {
+    border: 1px solid var(--theme-text-secondary) !important;
+}
+
+.usage-negative {
+    background-color: transparent !important;
+}
+
+.usage {
+    background-color: var(--theme-text-secondary) !important;
+}
+
+/* =============================================================================
+   MARKDOWN CONTENT
+   ============================================================================= */
+
+.pmx-md code {
+    background-color: var(--theme-bg-dark) !important;
+}
+
+.pmx-md pre code {
+    border-color: var(--theme-border-main) !important;
+}
+
+.pmx-md tbody tr td {
+    border-color: var(--theme-border-light) !important;
+}
+
+.pmx-md tbody tr:nth-of-type(2n) {
+    background-color: var(--theme-bg-dark) !important;
+}
+
+.pmx-md tbody tr:hover td {
+    background-color: var(--theme-bg-lightest) !important;
+}
+
+.pmx-md a {
+    color: var(--theme-text-link) !important;
+}
+
+.pmx-md a:active {
+    color: var(--theme-text-link-hover) !important;
+}
+
+/* =============================================================================
+   CEPH MONITOR WIDGETS
+   ============================================================================= */
+
+div.monitor {
+    border-color: var(--theme-border-light) !important;
+}
+
+table.osds tr {
+    border-color: var(--theme-border-light) !important;
+}
+
+table.osds td {
+    border-color: var(--theme-border-light) !important;
+}
+
+/* =============================================================================
+   APT REPOSITORIES
+   ============================================================================= */
+
+.proxmox-apt-repos .x-grid-group-hd {
+    background-color: var(--theme-bg-dark) !important;
+    border-color: var(--theme-border-main) !important;
+}
+
+.proxmox-apt-repos .x-grid-group-title {
+    color: var(--theme-text-primary) !important;
+}
+
+/* =============================================================================
+   INSTALL MASK
+   ============================================================================= */
+
+.install-mask {
+    background-color: var(--theme-bg-main) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+/* =============================================================================
+   LOGIN PAGE
+   ============================================================================= */
+
+#loginview,
+#loginview .x-window-body {
+    background: linear-gradient(180deg, #222228 0%, #1b1b20 100%) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+#loginview .x-form-field,
+#loginview .x-form-text {
+    background: #1f1f25 !important;
+    border-color: var(--theme-border-main) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+#loginview .x-btn {
+    background: linear-gradient(90deg, var(--theme-accent-primary), var(--theme-accent-secondary)) !important;
+    border: none !important;
+    color: var(--theme-btn-text) !important;
+}
+
+/* =============================================================================
+   LOGO INVERSION
+   ============================================================================= */
+
+img[id^="proxmoxlogo-"][id$="-img"] {
+    filter: var(--theme-icon-invert);
+}
+
+/* =============================================================================
+   LINKS
+   ============================================================================= */
+
+a {
+    color: var(--theme-text-link) !important;
+}
+
+a:hover {
+    color: var(--theme-text-link-hover) !important;
+}
+
+/* =============================================================================
+   MISC ICONS THAT NEED INVERSION
+   ============================================================================= */
+
+.fa-ceph::before,
+.fa-sdn::before,
+.fa-network-wired::before,
+.x-tree-icon-leaf:not(.x-tree-icon-custom),
+.x-tree-icon-parent:not(.x-tree-icon-custom),
+.x-tree-icon-parent-expanded:not(.x-tree-icon-custom) {
+    filter: var(--theme-icon-invert);
+}
+
+.pve-itype-icon-cpu,
+.pve-itype-icon-cdrom,
+.pve-itype-icon-memory,
+.pve-itype-icon-pci,
+.pve-itype-icon-serial,
+.pve-itype-icon-die,
+.pmx-itype-icon-processor,
+.pmx-itype-icon-memory,
+.pve-itype-icon-storage,
+.x-tree-node-harddisk {
+    filter: var(--theme-icon-invert);
+}
+
+/* =============================================================================
+   ACTION COLUMN ICONS
+   ============================================================================= */
+
+.x-action-col-icon::before {
+    color: var(--theme-text-secondary) !important;
+}
+
+.x-action-col-icon:hover::before,
+.x-action-col-icon:hover::after {
+    text-shadow: -1px 0 1px var(--theme-bg-main) !important;
+    color: var(--theme-accent-tertiary) !important;
+}
+
+/* =============================================================================
+   GRID FILTER INDICATOR
+   ============================================================================= */
+
+.x-grid-filters-filtered-column .x-column-header-text::after {
+    color: var(--theme-accent-primary) !important;
+}
+
+/* =============================================================================
+   LIGHT MODE OVERRIDES
+   Elements with hardcoded colors that need explicit light mode values
+   ============================================================================= */
+
+@media (prefers-color-scheme: light) {
+    /* Body background - light subtle gradient */
+    body {
+        background:
+            radial-gradient(circle at 20% 20%, rgba(248, 42, 113, 0.06), transparent 35%),
+            radial-gradient(circle at 80% 10%, rgba(42, 161, 179, 0.06), transparent 30%),
+            radial-gradient(circle at 50% 90%, rgba(127, 176, 62, 0.04), transparent 40%),
+            var(--theme-bg-darkest) !important;
+    }
+
+    /* Panel headers - light mode gradient */
+    .x-panel-header-default {
+        background: linear-gradient(90deg, #e0dcdb, #ebe7e6) !important;
+        border-bottom: 1px solid var(--theme-accent-primary) !important;
+    }
+
+    /* Window headers - light mode gradient */
+    .x-window-header-default {
+        background: linear-gradient(90deg, #e0dcdb, #ebe7e6) !important;
+        border-bottom: 1px solid var(--theme-accent-primary) !important;
+    }
+
+    /* Toolbar - light mode gradient */
+    .x-toolbar,
+    .x-toolbar-default {
+        background: linear-gradient(90deg, #ebe7e6, #f5f2f1) !important;
+    }
+
+    /* Tabs - light mode */
+    .x-tab-default,
+    .x-tab-default-top {
+        background: linear-gradient(90deg, #e8e4e3, #f0edec) !important;
+    }
+
+    .x-tab-default.x-tab-over {
+        background: linear-gradient(90deg, #f5f2f1, #ffffff) !important;
+    }
+
+    /* Toolbar buttons - light mode */
+    .x-btn-default-toolbar-small {
+        background: linear-gradient(90deg, #f0edec, #e8e4e3) !important;
+    }
+
+    /* Grid header - light mode */
+    .x-grid-header-ct {
+        background-color: #ebe7e6 !important;
+    }
+
+    /* Form inputs - light mode */
+    .x-form-text-default,
+    .x-form-field {
+        background-color: #ffffff !important;
+    }
+
+    /* Scrollbar - light mode */
+    ::-webkit-scrollbar-track {
+        background: #e8e4e3;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, var(--theme-accent-primary), var(--theme-accent-secondary));
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, var(--theme-warning), var(--theme-accent-tertiary));
+    }
+
+    /* Login page - light mode */
+    #loginview,
+    #loginview .x-window-body {
+        background: linear-gradient(180deg, #e8e4e3 0%, #d3cdcc 100%) !important;
+    }
+
+    #loginview .x-form-field,
+    #loginview .x-form-text {
+        background: #ffffff !important;
+    }
+
+    /* Progress bar background - light mode */
+    .x-progress-default {
+        background-color: #e0dcdb !important;
+    }
+
+    /* Mask - light mode */
+    .x-mask {
+        background-color: rgba(211, 205, 204, 0.6) !important;
+    }
+
+    /* Shadows - lighter for light mode */
+    .x-css-shadow {
+        box-shadow: rgba(0, 0, 0, 0.15) 0 -1px 15px 5px !important;
+    }
+
+    /* Hover states - adjust RGBA for light backgrounds */
+    .x-boundlist-item-over {
+        background-color: rgba(42, 161, 179, 0.15) !important;
+    }
+
+    .x-boundlist-selected {
+        background-color: rgba(248, 42, 113, 0.2) !important;
+    }
+
+    .x-grid-item-over {
+        background-color: rgba(42, 161, 179, 0.12) !important;
+    }
+
+    .x-grid-item-selected {
+        background-color: rgba(248, 42, 113, 0.15) !important;
+    }
+
+    .x-column-header-over,
+    .x-column-header-open {
+        background-color: rgba(42, 161, 179, 0.1) !important;
+    }
+
+    .x-treelist-row-over {
+        background-color: rgba(127, 176, 62, 0.12) !important;
+    }
+
+    .x-menu-item-default.x-menu-item-focus,
+    .x-menu-item-default.x-menu-item-active {
+        background-color: rgba(42, 161, 179, 0.12) !important;
+    }
+
+    /* Tags - light mode */
+    .proxmox-tags-full .proxmox-tag-dark {
+        background: rgba(248, 42, 113, 0.15) !important;
+    }
+
+    .proxmox-tags-full .proxmox-tag-light {
+        background: rgba(42, 161, 179, 0.15) !important;
+    }
+
+    /* Status rows - light mode */
+    .proxmox-invalid-row {
+        background-color: rgba(248, 42, 113, 0.15) !important;
+    }
+
+    .proxmox-warning-row {
+        background-color: rgba(232, 115, 34, 0.15) !important;
+    }
+
+    /* Date picker selected - light mode */
+    .x-datepicker-selected div.x-datepicker-date,
+    .x-monthpicker-item a.x-monthpicker-selected,
+    a.x-monthpicker-item-inner:hover,
+    div.x-datepicker-date:hover {
+        background-color: rgba(248, 42, 113, 0.15) !important;
+    }
+
+    /* Hints - light mode */
+    .pmx-hint {
+        background-color: rgba(232, 115, 34, 0.15) !important;
+    }
+
+    /* Form invalid - light mode */
+    .x-form-invalid {
+        background-color: rgba(232, 115, 34, 0.08) !important;
+    }
+}

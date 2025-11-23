@@ -1,0 +1,12 @@
+{
+  "name": "Dracula",
+  "description": "Official Dracula theme with purple, pink, cyan, and green accents on a dark background.",
+  "author": "Marleybop",
+  "version": "1.0.0",
+  "tested_proxmox_versions": ["7.x", "8.x"],
+  "features": ["dark-mode"],
+  "css_files": [
+    "css/dracula.css"
+  ],
+  "inject_file": "snippet.html"
+}
