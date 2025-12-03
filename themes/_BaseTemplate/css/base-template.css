@@ -491,16 +491,24 @@ div[id^="pveResourceTree-"][id$="-body"] {
     color: var(--theme-text-secondary) !important;
 }
 
+/* Running status - use success/green accent */
 .x-tree-icon-custom.running,
 .x-grid-icon-custom.running {
-    color: var(--theme-text-primary) !important;
+    color: var(--theme-success) !important;
 }
 
+/* Stopped status - use primary accent */
 .x-tree-icon-custom.stopped,
+.x-grid-icon-custom.stopped {
+    color: var(--theme-accent-primary) !important;
+    opacity: 0.6;
+}
+
+/* Offline status - use warning color */
 .x-tree-icon-custom.offline,
-.x-grid-icon-custom.stopped,
 .x-grid-icon-custom.offline {
-    color: var(--theme-text-disabled) !important;
+    color: var(--theme-warning) !important;
+    opacity: 0.7;
 }
 
 .x-tree-icon-custom::after,
