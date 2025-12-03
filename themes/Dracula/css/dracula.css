@@ -504,7 +504,9 @@ div[id^="pveResourceTree-"][id$="-body"] {
 .x-tree-icon-custom.running::after,
 .x-grid-icon-custom.running::after,
 .x-tree-icon-leaf.running::after,
-.x-tree-icon-parent.running::after {
+.x-tree-icon-parent.running::after,
+.x-tree-icon-parent-expanded.running::after,
+.fa.running::after {
     color: var(--dracula-green) !important;
 }
 
@@ -512,7 +514,9 @@ div[id^="pveResourceTree-"][id$="-body"] {
 .x-tree-icon-custom.stopped::after,
 .x-grid-icon-custom.stopped::after,
 .x-tree-icon-leaf.stopped::after,
-.x-tree-icon-parent.stopped::after {
+.x-tree-icon-parent.stopped::after,
+.x-tree-icon-parent-expanded.stopped::after,
+.fa.stopped::after {
     color: var(--dracula-purple) !important;
     opacity: 0.6;
 }
