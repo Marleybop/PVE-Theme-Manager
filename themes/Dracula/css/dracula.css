@@ -492,47 +492,29 @@ div[id^="pveResourceTree-"][id$="-body"] {
 
 /* Status indicator icons (::after overlay) */
 .x-tree-icon-custom::after,
-.x-grid-icon-custom::after {
+.x-grid-icon-custom::after,
+.x-tree-icon-leaf::after,
+.x-tree-icon-parent::after,
+.x-tree-icon-parent-expanded::after {
     color: var(--theme-text-secondary) !important;
     text-shadow: -1px 0 1px var(--theme-bg-main) !important;
 }
 
 /* Running status indicator - green accent */
 .x-tree-icon-custom.running::after,
-.x-grid-icon-custom.running::after {
-    color: var(--dracula-green) !important;
-}
-
-/* Stopped status indicator - purple accent */
-.x-tree-icon-custom.stopped::after,
-.x-grid-icon-custom.stopped::after {
-    color: var(--dracula-purple) !important;
-    opacity: 0.6;
-}
-
-/* Offline status indicator - orange warning */
-.x-tree-icon-custom.offline::after,
-.x-grid-icon-custom.offline::after {
-    color: var(--dracula-orange) !important;
-    opacity: 0.7;
-}
-
-/* Status indicators for nodes, storage, network (non-custom icons) */
+.x-grid-icon-custom.running::after,
 .x-tree-icon-leaf.running::after,
 .x-tree-icon-parent.running::after {
     color: var(--dracula-green) !important;
 }
 
+/* Stopped status indicator - purple accent */
+.x-tree-icon-custom.stopped::after,
+.x-grid-icon-custom.stopped::after,
 .x-tree-icon-leaf.stopped::after,
 .x-tree-icon-parent.stopped::after {
     color: var(--dracula-purple) !important;
     opacity: 0.6;
-}
-
-.x-tree-icon-leaf.offline::after,
-.x-tree-icon-parent.offline::after {
-    color: var(--dracula-orange) !important;
-    opacity: 0.7;
 }
 
 /* Tree expander arrows */
