@@ -3,7 +3,29 @@
  *
  * A comprehensive template covering ALL themeable Proxmox VE UI elements.
  * Supports both light and dark modes via CSS variables.
- * Copy this folder, rename it, and customize the CSS variables below.
+ *
+ * HOW TO USE THIS TEMPLATE:
+ * -------------------------
+ * 1. Copy the entire _BaseTemplate folder to a new name (e.g., MyTheme)
+ * 2. Rename this CSS file to match your theme (e.g., my-theme.css)
+ * 3. Update metadata.json with your theme name and info
+ * 4. Update snippet.html to reference your renamed CSS file
+ * 5. Scroll down and change the CSS variable values in :root { ... }
+ *    - Focus on: backgrounds, text, accents, and status colors
+ *    - Everything else will automatically use these colors
+ * 6. For light mode: uncomment the @media section and customize
+ * 7. Test with: ./pve-theme-manager.sh --dry-run install MyTheme
+ *
+ * QUICK CUSTOMIZATION GUIDE:
+ * --------------------------
+ * --theme-bg-*        : Background colors (darkest to lightest)
+ * --theme-text-*      : Text colors (primary, secondary, disabled, links)
+ * --theme-accent-*    : Your theme's signature colors (buttons, highlights)
+ * --theme-success     : Green for running VMs/containers/nodes
+ * --theme-warning     : Orange/yellow for warnings
+ * --theme-error       : Red for errors
+ *
+ * See themes/MonokaiPro or themes/Dracula for complete examples.
  *
  * Author: [Your Name]
  * Version: 2.0.0
@@ -11,7 +33,7 @@
 
 /* =============================================================================
    CSS VARIABLES - Dark Mode (Default)
-   Edit these to customize your theme
+   👇 EDIT THE HEX VALUES BELOW TO CUSTOMIZE YOUR THEME 👇
    ============================================================================= */
 
 :root {

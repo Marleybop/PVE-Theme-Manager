@@ -154,21 +154,52 @@ Update `metadata.json` and `snippet.html` with your theme name and CSS filename.
 | **Borders** | `--theme-border-*` | Borders, separators, outlines |
 | **Effects** | `--theme-shadow/glow` | Shadows, glow effects |
 
-### Manual Theme Creation
+### Creating Your Own Theme
 
-1. Copy an existing theme: `cp -r themes/CyberpunkNeon themes/MyTheme`
-2. Edit `metadata.json` with your theme's info
-3. Create your CSS file in `css/`
-4. Update `snippet.html` to reference your CSS
-5. Test with: `./pve-theme-manager.sh --dry-run install MyTheme`
+**Quick Start:**
+1. Copy the base template: `cp -r themes/_BaseTemplate themes/MyTheme`
+2. Edit `themes/MyTheme/metadata.json`:
+   - Change `name` to `"MyTheme"`
+   - Update `description`, `author`, `version`
+3. Edit `themes/MyTheme/css/base-template.css`:
+   - Rename to `my-theme.css`
+   - Customize CSS variables in `:root { ... }`
+   - Change colors to match your theme
+4. Edit `themes/MyTheme/snippet.html`:
+   - Update CSS filename to match your renamed file
+5. Test: `./pve-theme-manager.sh --dry-run install MyTheme`
 6. Install: `./pve-theme-manager.sh install MyTheme`
 
-### Reference CSS
+**What to Customize:**
 
-The `stock css/` folder contains original Proxmox CSS files for reference:
-- `theme-proxmox-dark.css` - Proxmox dark theme
-- `ext6-pve.css` - Proxmox-specific ExtJS overrides
-- `ext6-pmx.css` - Proxmox Manager ExtJS overrides
+All colors are controlled by CSS variables in `:root`. Just change the hex values:
+
+```css
+:root {
+    /* Backgrounds - dark to light progression */
+    --theme-bg-darkest: #your-color;  /* Main viewport */
+    --theme-bg-main: #your-color;     /* Panels, windows */
+    --theme-bg-light: #your-color;    /* Input fields */
+
+    /* Accent colors - your theme's signature colors */
+    --theme-accent-primary: #your-color;    /* Buttons, tabs */
+    --theme-accent-secondary: #your-color;  /* Running status indicators */
+    --theme-accent-tertiary: #your-color;   /* Stopped status indicators */
+
+    /* Status colors - green/orange/red */
+    --theme-success: #your-color;  /* Running VMs, online nodes */
+    --theme-warning: #your-color;  /* Warnings */
+    --theme-error: #your-color;    /* Errors */
+}
+```
+
+**For Light Mode Support:**
+
+Uncomment and customize the `@media (prefers-color-scheme: light)` section in the template.
+
+**Examples:**
+
+Look at `themes/MonokaiPro` or `themes/Dracula` to see complete implementations.
 
 ## File Locations
 
